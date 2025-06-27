@@ -1,7 +1,35 @@
 [project]
-name = "synapsekit"
+name = "synapsekit-workspace"
 version = "0.1.0"
-description = "Add your description here"
+description = "Monorepo for SynapseKit core"
+authors= [{ name = "Enderclem", email = "enderclem@gmail.com"}]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "langchain-ollama>=0.3.3",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "mypy>=1.16.1",
+    "pytest>=8.4.1",
+    "ruff>=0.12.1",
+]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N", "D"] # Error, Flake8, Warnings, Isort, Naming, Docstrings
+target-version = "py313"
+
+[tool.mypy]
+python_version = "3.13"
+warn_unused_configs = true
+check_untyped_defs = true
+disallow_untyped_defs = true
+warn_return_any = true
+
+[tool.uv.workspace]
+members = [
+    "synapsekit",
+]
